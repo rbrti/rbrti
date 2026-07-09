@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RBR Tecnologia da Informação — Infraestrutura, Virtualização e Backup</title>
+<meta name="description" content="RBR TI: mais de 11 anos em serviços de Tecnologia da Informação. Equipe certificada Microsoft, VMware VCP/VCAP, Veeam VMCE e HPE Master ASE.">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Sora:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0b0d;
+    --ink-2:#14161a;
+    --paper:#ffffff;
+    --mist:#f3f5f8;
+    --steel:#5b6470;
+    --line:#e2e6eb;
+    --line-dark:#2a2e35;
+    --cobalt:#1e56e8;
+    --cobalt-dark:#2f5fd6;
+    --cobalt-soft:#e8eeff;
+    --display:"Sora",sans-serif;
+    --tech:"Michroma",sans-serif;
+    --body:"IBM Plex Sans",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);color:var(--ink);background:var(--paper);line-height:1.6;font-size:16px}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--cobalt);outline-offset:3px}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+  /* eyebrow with the "logo rule" — thin rule under wide tech type, echoing the RBR mark */
+  .eyebrow{font-family:var(--tech);font-size:.7rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--cobalt);display:inline-block;padding-bottom:10px;border-bottom:2px solid currentColor;margin-bottom:22px}
+  .dark .eyebrow{color:#3d63e0}
+
+  h1,h2,h3{font-family:var(--display);line-height:1.15}
+  h2{font-size:clamp(1.6rem,3.4vw,2.4rem);font-weight:700;letter-spacing:-.01em}
+
+  /* ============ NAV ============ */
+  header{position:sticky;top:0;z-index:50;background:rgba(10,11,13,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-dark)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .brand img{height:38px;width:auto}
+  .nav ul{display:flex;gap:30px;list-style:none}
+  .nav ul a{color:#c8ccd4;text-decoration:none;font-size:.9rem;font-weight:500;transition:color .2s}
+  .nav ul a:hover{color:#fff}
+  .nav .cta{background:var(--cobalt);color:#fff;padding:9px 18px;border-radius:6px;font-weight:600;text-decoration:none;font-size:.9rem;transition:background .2s}
+  .nav .cta:hover{background:#1746c4}
+  .menu-btn{display:none}
+
+  /* ============ HERO ============ */
+  .hero{background:var(--ink);color:#fff;padding:96px 0 84px;position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background:
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+    background-size:56px 56px;mask-image:radial-gradient(ellipse 90% 80% at 50% 0%,#000 40%,transparent 100%)}
+  .hero .wrap{position:relative}
+  .hero-tag{font-family:var(--tech);font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;color:#8f97a3;margin-bottom:26px}
+  .hero h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:700;letter-spacing:-.02em;max-width:17ch}
+  .hero h1 em{font-style:normal;color:#3d63e0}
+  .hero-rule{width:120px;height:3px;background:#fff;margin:34px 0 26px}
+  .hero p{color:#aab1bb;max-width:56ch;font-size:1.06rem}
+  .hero-actions{margin-top:38px;display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:14px 28px;border-radius:6px;font-weight:600;text-decoration:none;font-size:.95rem;transition:.2s}
+  .btn-primary{background:var(--cobalt);color:#fff}
+  .btn-primary:hover{background:#1746c4}
+  .btn-ghost{border:1px solid #3a3f47;color:#e6e8ec}
+  .btn-ghost:hover{border-color:#fff}
+  .hero-stats{display:flex;gap:0;margin-top:64px;border-top:1px solid var(--line-dark);flex-wrap:wrap}
+  .hero-stats div{padding:22px 40px 0 0;margin-right:40px}
+  .hero-stats strong{font-family:var(--display);font-size:1.7rem;font-weight:700;display:block;color:#fff}
+  .hero-stats span{font-size:.82rem;color:#8f97a3;letter-spacing:.04em}
+
+  /* ============ SERVICES ============ */
+  .services{padding:90px 0;background:var(--paper)}
+  .sec-head{max-width:60ch;margin-bottom:52px}
+  .sec-head p{color:var(--steel);margin-top:14px}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  .svc{background:var(--paper);padding:34px 28px;transition:background .2s}
+  .svc:hover{background:var(--mist)}
+  .svc-code{font-family:var(--tech);font-size:.62rem;font-weight:700;letter-spacing:.28em;color:var(--cobalt);display:block;margin-bottom:16px}
+  .svc h3{font-size:1.08rem;font-weight:600;margin-bottom:10px}
+  .svc p{font-size:.92rem;color:var(--steel)}
+
+  /* ============ CERTS ============ */
+  .certs{padding:90px 0;background:var(--ink);color:#fff}
+  .certs .sec-head p{color:#aab1bb}
+  .spec{border-top:1px solid var(--line-dark)}
+  .spec-row{display:grid;grid-template-columns:220px 1fr auto;gap:24px;align-items:baseline;padding:26px 0;border-bottom:1px solid var(--line-dark)}
+  .spec-vendor{font-family:var(--tech);font-size:.72rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#3d63e0}
+  .spec-name{font-family:var(--display);font-weight:600;font-size:1.05rem}
+  .spec-name small{display:block;font-family:var(--body);font-weight:400;color:#8f97a3;font-size:.88rem;margin-top:4px}
+  .spec-badge{font-size:.72rem;color:#8f97a3;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+
+  /* ============ ABOUT ============ */
+  .about{padding:90px 0;background:var(--mist)}
+  .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}
+  .about p{color:var(--steel);margin-top:14px}
+  .about-points{list-style:none;margin-top:26px}
+  .about-points li{padding:14px 0;border-bottom:1px solid var(--line);display:flex;gap:14px;align-items:baseline;font-size:.95rem}
+  .about-points li::before{content:"";width:22px;height:2px;background:var(--cobalt);flex:none;transform:translateY(-4px)}
+  .about-logo{background:var(--ink);border-radius:10px;padding:48px 36px;display:flex;align-items:center;justify-content:center}
+  .about-logo img{width:100%;max-width:380px}
+
+  /* ============ CONTACT ============ */
+  .contact{padding:90px 0;background:var(--paper)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+  .contact p{color:var(--steel);margin-top:14px;max-width:46ch}
+  .contact-list{list-style:none;margin-top:30px}
+  .contact-list li{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);align-items:center}
+  .contact-list .k{font-family:var(--tech);font-size:.62rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--cobalt);width:92px;flex:none}
+  .contact-list a{text-decoration:none;font-weight:500}
+  .contact-list a:hover{color:var(--cobalt)}
+  form{display:grid;gap:14px}
+  label{font-size:.82rem;font-weight:600;letter-spacing:.02em}
+  input,textarea{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:6px;font-family:var(--body);font-size:.95rem;background:var(--mist)}
+  input:focus,textarea:focus{outline:2px solid var(--cobalt);outline-offset:0;border-color:var(--cobalt)}
+  form .btn-primary{border:0;cursor:pointer;justify-self:start;font-family:var(--body)}
+
+  /* ============ FOOTER ============ */
+  footer{background:var(--ink);color:#8f97a3;padding:40px 0;font-size:.85rem}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .foot img{height:30px}
+  .foot-tag{font-family:var(--tech);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase}
+
+  @media (max-width:900px){
+    .svc-grid{grid-template-columns:1fr 1fr}
+    .about-grid,.contact-grid{grid-template-columns:1fr;gap:44px}
+    .spec-row{grid-template-columns:1fr;gap:6px}
+  }
+  @media (max-width:640px){
+    .nav ul{display:none}
+    .svc-grid{grid-template-columns:1fr}
+    .hero{padding:72px 0 60px}
+    .hero-stats div{padding-right:24px;margin-right:24px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{transition:none!important}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#inicio" aria-label="RBR Tecnologia da Informação — início">
+      <img src="logo.jpg" alt="RBR Tecnologia da Informação">
+    </a>
+    <nav aria-label="Principal">
+      <ul>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#certificacoes">Certificações</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+    <a class="cta" href="#contato">Fale conosco</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="wrap">
+      <p class="hero-tag">Tecnologia da Informação · desde 2015</p>
+      <h1>Infraestrutura de TI com <em>precisão de engenharia</em></h1>
+      <div class="hero-rule" aria-hidden="true"></div>
+      <p>A RBR TI presta serviços de Tecnologia da Informação com uma equipe técnica de alto nível, certificada pelos principais fabricantes do mercado. Servidores, virtualização, backup e sustentação — para clientes públicos e privados.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contato">Fale com um especialista</a>
+        <a class="btn btn-ghost" href="#servicos">Conheça os serviços</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>11+</strong><span>anos de atuação</span></div>
+        <div><strong>4</strong><span>fabricantes certificados</span></div>
+        <div><strong>Público e privado</strong><span>perfis de clientes atendidos</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="servicos">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Serviços</span>
+        <h2>O que entregamos</h2>
+        <p>Projetos, implantação e sustentação de ambientes de TI — do servidor físico à camada de virtualização e proteção de dados.</p>
+      </div>
+      <div class="svc-grid">
+        <article class="svc">
+          <span class="svc-code">SRV / WINDOWS</span>
+          <h3>Servidores Microsoft</h3>
+          <p>Implantação, migração e administração de ambientes Windows Server — do 2008 ao 2019 e versões posteriores, incluindo Active Directory, DNS, DHCP e serviços de arquivo.</p>
+        </article>
+        <article class="svc">
+          <span class="svc-code">VIRT / VMWARE · HYPER-V</span>
+          <h3>Virtualização VMware e Hyper-V</h3>
+          <p>Projeto e operação de ambientes vSphere e Microsoft Hyper-V: consolidação de servidores, alta disponibilidade, clusters de failover, vMotion e otimização de recursos com profissionais VCP e VCAP.</p>
+        </article>
+        <article class="svc">
+          <span class="svc-code">BKP / VEEAM</span>
+          <h3>Backup e replicação</h3>
+          <p>Proteção de dados com Veeam Backup & Replication: políticas de retenção, replicação entre sites e testes de restauração conduzidos por especialistas VMCE.</p>
+        </article>
+        <article class="svc">
+          <span class="svc-code">HW / HPE</span>
+          <h3>Infraestrutura HPE</h3>
+          <p>Dimensionamento, instalação e suporte a servidores e storages HPE, com certificação Master ASE — o nível mais alto de especialização do fabricante.</p>
+        </article>
+        <article class="svc">
+          <span class="svc-code">OPS / SUPORTE</span>
+          <h3>Suporte e sustentação</h3>
+          <p>Atendimento técnico contínuo para manter o ambiente estável: gestão de incidentes, manutenção preventiva e acompanhamento do dia a dia da infraestrutura.</p>
+        </article>
+        <article class="svc">
+          <span class="svc-code">ADV / CONSULTORIA</span>
+          <h3>Consultoria em TI</h3>
+          <p>Diagnóstico de ambiente, planejamento de capacidade e desenho de soluções sob medida para órgãos públicos e empresas privadas.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="certs dark" id="certificacoes">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Certificações</span>
+        <h2>Equipe certificada pelos fabricantes</h2>
+        <p>Competência comprovada, não apenas declarada. Nossos profissionais mantêm certificações oficiais dos principais fornecedores de infraestrutura do mercado.</p>
+      </div>
+      <div class="spec">
+        <div class="spec-row">
+          <span class="spec-vendor">Microsoft</span>
+          <span class="spec-name">Microsoft Certified — Windows Server<small>Certificações do Windows Server 2008 ao Windows Server 2019</small></span>
+          <span class="spec-badge">Servidores · Identidade</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-vendor">VMware</span>
+          <span class="spec-name">VCP &amp; VCAP<small>VMware Certified Professional e Advanced Certified Professional</small></span>
+          <span class="spec-badge">Virtualização</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-vendor">Veeam</span>
+          <span class="spec-name">VMCE<small>Veeam Certified Engineer</small></span>
+          <span class="spec-badge">Backup · Replicação</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-vendor">HPE</span>
+          <span class="spec-name">Master ASE<small>Hewlett Packard Enterprise — Master Accredited Solutions Expert</small></span>
+          <span class="spec-badge">Hardware · Storage</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="sobre">
+    <div class="wrap about-grid">
+      <div>
+        <span class="eyebrow">Sobre a RBR</span>
+        <h2>Mais de 11 anos resolvendo TI de verdade</h2>
+        <p>A RBR Tecnologia da Informação atende diversos tipos de clientes, públicos e privados, com uma equipe técnica de alto nível. Nosso foco é simples: ambientes estáveis, dados protegidos e problemas resolvidos com transparência.</p>
+        <ul class="about-points">
+          <li>Profissionais altamente capacitados e certificados</li>
+          <li>Experiência com órgãos públicos e empresas privadas</li>
+          <li>Atuação do projeto à sustentação contínua</li>
+          <li>Compromisso com prazos e comunicação clara</li>
+        </ul>
+      </div>
+      <div class="about-logo">
+        <img src="logo.jpg" alt="Logotipo RBR Tecnologia da Informação">
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contato">
+    <div class="wrap contact-grid">
+      <div>
+        <span class="eyebrow">Contato</span>
+        <h2>Vamos conversar sobre o seu ambiente</h2>
+        <p>Conte para a gente o desafio da sua infraestrutura. Retornamos com uma proposta objetiva, sem enrolação.</p>
+        <ul class="contact-list">
+          <li><span class="k">E-mail</span><a href="mailto:contato@rbrti.com.br">contato@rbrti.com.br</a></li>
+          <li><span class="k">Telefone</span><a href="tel:+5511999999999">(11) 99999-9999</a></li>
+          <li><span class="k">Horário</span><span>Segunda a sexta, 8h às 18h</span></li>
+        </ul>
+      </div>
+      <form action="mailto:contato@rbrti.com.br" method="post" enctype="text/plain">
+        <div>
+          <label for="nome">Nome</label>
+          <input id="nome" name="nome" type="text" autocomplete="name" required>
+        </div>
+        <div>
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div>
+          <label for="msg">Como podemos ajudar?</label>
+          <textarea id="msg" name="mensagem" rows="5" required></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Enviar mensagem</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <img src="logo.jpg" alt="RBR Tecnologia da Informação">
+    <span>© 2026 RBR Tecnologia da Informação. Todos os direitos reservados.</span>
+    <span class="foot-tag">Infraestrutura · Virtualização · Backup</span>
+  </div>
+</footer>
+
+</body>
+</html>
