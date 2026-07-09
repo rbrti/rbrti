@@ -54,7 +54,11 @@
   .nav ul a:hover{color:#fff}
   .nav .cta{background:var(--cobalt);color:#fff;padding:9px 18px;border-radius:6px;font-weight:600;text-decoration:none;font-size:.9rem;transition:background .2s}
   .nav .cta:hover{background:#1746c4}
-  .menu-btn{display:none}
+  .menu-btn{display:none;background:none;border:1px solid #3a3f47;border-radius:6px;padding:9px 11px;cursor:pointer}
+  .menu-btn span{display:block;width:20px;height:2px;background:#e6e8ec;margin:4px 0;transition:transform .2s,opacity .2s}
+  .nav-open .menu-btn span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+  .nav-open .menu-btn span:nth-child(2){opacity:0}
+  .nav-open .menu-btn span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 
   /* ============ HERO ============ */
   .hero{background:var(--ink);color:#fff;padding:96px 0 84px;position:relative;overflow:hidden}
@@ -67,7 +71,7 @@
   .hero-media{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--line-dark);box-shadow:0 30px 60px rgba(0,0,0,.5)}
   .hero-media video{width:100%;height:100%;object-fit:cover;display:block}
   .hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(10,11,13,.45),transparent 55%);pointer-events:none}
-  .hero-tag{font-family:var(--tech);font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;color:#8f97a3;margin-bottom:26px}
+  .hero-tag{font-family:var(--tech);font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;color:#8f97a3;margin-bottom:26px;white-space:nowrap}
   .hero h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:700;letter-spacing:-.02em;max-width:17ch}
   .hero h1 em{font-style:normal;color:#3d63e0}
   .hero-rule{width:120px;height:3px;background:#fff;margin:34px 0 26px}
@@ -150,6 +154,14 @@
   }
   @media (max-width:640px){
     .nav ul{display:none}
+    .menu-btn{display:block}
+    .nav .cta{display:none}
+    .nav-open nav{display:block;position:absolute;top:68px;left:0;right:0;background:var(--ink);border-bottom:1px solid var(--line-dark)}
+    .nav-open .nav ul{display:flex;flex-direction:column;gap:0;padding:8px 24px 16px}
+    .nav-open .nav ul li{border-bottom:1px solid var(--line-dark)}
+    .nav-open .nav ul li:last-child{border-bottom:0}
+    .nav-open .nav ul a{display:block;padding:15px 0;font-size:1rem}
+    .hero-tag{font-size:.55rem;letter-spacing:.18em}
     .svc-grid{grid-template-columns:1fr}
     .hero{padding:72px 0 60px}
     .hero-stats div{padding-right:24px;margin-right:24px}
@@ -167,7 +179,7 @@
     <a class="brand" href="#inicio" aria-label="RBR Tecnologia da Informação — início">
       <img src="logo.png" alt="RBR Tecnologia da Informação">
     </a>
-    <nav aria-label="Principal">
+    <nav aria-label="Principal" id="menu-principal">
       <ul>
         <li><a href="#servicos">Serviços</a></li>
         <li><a href="#certificacoes">Certificações</a></li>
@@ -176,6 +188,9 @@
       </ul>
     </nav>
     <a class="cta" href="#contato">Fale conosco</a>
+    <button class="menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -308,7 +323,7 @@
         <p>Conte para a gente o desafio da sua infraestrutura. Retornamos com uma proposta objetiva, sem enrolação.</p>
         <ul class="contact-list">
           <li><span class="k">E-mail</span><a href="mailto:contato@rbrti.com.br">contato@rbrti.com.br</a></li>
-          <li><span class="k">Horário</span><span><b>Segunda a sexta, 8h às 18h<b/></span></li>
+          <li><span class="k">Horário</span><strong>Segunda a sexta, 8h às 18h</strong></li>
         </ul>
       </div>
       <form action="mailto:contato@rbrti.com.br" method="post" enctype="text/plain">
@@ -339,6 +354,22 @@
 </footer>
 
 <script>
+  // Menu hamburguer no celular
+  const header = document.querySelector('header');
+  const menuBtn = document.querySelector('.menu-btn');
+  menuBtn.addEventListener('click', () => {
+    const open = header.classList.toggle('nav-open');
+    menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+  });
+  // Fecha o menu ao tocar em um link
+  document.querySelectorAll('#menu-principal a').forEach(a =>
+    a.addEventListener('click', () => {
+      header.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    })
+  );
+
   // Pausa o vídeo do hero se o usuário preferir menos movimento
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.querySelectorAll('.hero-media video').forEach(v => { v.removeAttribute('autoplay'); v.pause(); });
