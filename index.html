@@ -63,6 +63,10 @@
     linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
     background-size:56px 56px;mask-image:radial-gradient(ellipse 90% 80% at 50% 0%,#000 40%,transparent 100%)}
   .hero .wrap{position:relative}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .hero-media{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--line-dark);box-shadow:0 30px 60px rgba(0,0,0,.5)}
+  .hero-media video{width:100%;height:100%;object-fit:cover;display:block}
+  .hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(10,11,13,.45),transparent 55%);pointer-events:none}
   .hero-tag{font-family:var(--tech);font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;color:#8f97a3;margin-bottom:26px}
   .hero h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:700;letter-spacing:-.02em;max-width:17ch}
   .hero h1 em{font-style:normal;color:#3d63e0}
@@ -135,6 +139,7 @@
     .svc-grid{grid-template-columns:1fr 1fr}
     .about-grid,.contact-grid{grid-template-columns:1fr;gap:44px}
     .spec-row{grid-template-columns:1fr;gap:6px}
+    .hero-grid{grid-template-columns:1fr;gap:44px}
   }
   @media (max-width:640px){
     .nav ul{display:none}
@@ -153,7 +158,7 @@
 <header>
   <div class="wrap nav">
     <a class="brand" href="#inicio" aria-label="RBR Tecnologia da Informação — início">
-      <img src="logo.png" alt="RBR Tecnologia da Informação">
+      <img src="logo.jpg" alt="RBR Tecnologia da Informação">
     </a>
     <nav aria-label="Principal">
       <ul>
@@ -170,16 +175,25 @@
 <main>
   <section class="hero" id="inicio">
     <div class="wrap">
-      <p class="hero-tag">Tecnologia da Informação · desde 2012</p>
-      <h1>Infraestrutura de TI com <em>precisão de engenharia</em></h1>
-      <div class="hero-rule" aria-hidden="true"></div>
-      <p>A RBR TI presta serviços de Tecnologia da Informação com uma equipe técnica de alto nível, certificada pelos principais fabricantes do mercado. Servidores, virtualização, backup e sustentação — para clientes públicos e privados.</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#contato">Fale com um especialista</a>
-        <a class="btn btn-ghost" href="#servicos">Conheça os serviços</a>
+      <div class="hero-grid">
+        <div>
+          <p class="hero-tag">Tecnologia da Informação · desde 2012</p>
+          <h1>Infraestrutura de TI com <em>precisão de engenharia</em></h1>
+          <div class="hero-rule" aria-hidden="true"></div>
+          <p>A RBR TI presta serviços de Tecnologia da Informação com uma equipe técnica de alto nível, certificada pelos principais fabricantes do mercado. Servidores, virtualização, backup e sustentação — para clientes públicos e privados.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contato">Fale com um especialista</a>
+            <a class="btn btn-ghost" href="#servicos">Conheça os serviços</a>
+          </div>
+        </div>
+        <div class="hero-media" aria-hidden="true">
+          <video autoplay muted loop playsinline preload="metadata" poster="hero-poster.jpg">
+            <source src="hero-video.mp4" type="video/mp4">
+          </video>
+        </div>
       </div>
       <div class="hero-stats">
-        <div><strong>12+</strong><span>anos de atuação</span></div>
+        <div><strong>11+</strong><span>anos de atuação</span></div>
         <div><strong>4</strong><span>fabricantes certificados</span></div>
         <div><strong>Público e privado</strong><span>perfis de clientes atendidos</span></div>
       </div>
@@ -264,7 +278,7 @@
     <div class="wrap about-grid">
       <div>
         <span class="eyebrow">Sobre a RBR</span>
-        <h2>Mais de 12 anos resolvendo TI de verdade</h2>
+        <h2>Mais de 11 anos resolvendo TI de verdade</h2>
         <p>A RBR Tecnologia da Informação atende diversos tipos de clientes, públicos e privados, com uma equipe técnica de alto nível. Nosso foco é simples: ambientes estáveis, dados protegidos e problemas resolvidos com transparência.</p>
         <ul class="about-points">
           <li>Profissionais altamente capacitados e certificados</li>
@@ -274,7 +288,7 @@
         </ul>
       </div>
       <div class="about-logo">
-        <img src="logo.png" alt="Logotipo RBR Tecnologia da Informação">
+        <img src="logo.jpg" alt="Logotipo RBR Tecnologia da Informação">
       </div>
     </div>
   </section>
@@ -287,7 +301,8 @@
         <p>Conte para a gente o desafio da sua infraestrutura. Retornamos com uma proposta objetiva, sem enrolação.</p>
         <ul class="contact-list">
           <li><span class="k">E-mail</span><a href="mailto:contato@rbrti.com.br">contato@rbrti.com.br</a></li>
-          <li><span class="k">Horário</span><span><b>Segunda a sexta, 8h às 18h</b></span></li>
+          <li><span class="k">Telefone</span><a href="tel:+5511999999999">(11) 99999-9999</a></li>
+          <li><span class="k">Horário</span><span>Segunda a sexta, 8h às 18h</span></li>
         </ul>
       </div>
       <form action="mailto:contato@rbrti.com.br" method="post" enctype="text/plain">
@@ -311,11 +326,17 @@
 
 <footer>
   <div class="wrap foot">
-    <img src="logo.png" alt="RBR Tecnologia da Informação">
+    <img src="logo.jpg" alt="RBR Tecnologia da Informação">
     <span>© 2026 RBR Tecnologia da Informação. Todos os direitos reservados.</span>
     <span class="foot-tag">Infraestrutura · Virtualização · Backup</span>
   </div>
 </footer>
 
+<script>
+  // Pausa o vídeo do hero se o usuário preferir menos movimento
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.hero-media video').forEach(v => { v.removeAttribute('autoplay'); v.pause(); });
+  }
+</script>
 </body>
 </html>
