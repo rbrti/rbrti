@@ -29,7 +29,7 @@
     --body:"IBM Plex Sans",sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
   body{font-family:var(--body);color:var(--ink);background:var(--paper);line-height:1.6;font-size:16px;overflow-x:clip}
   img{max-width:100%;display:block}
   a{color:inherit}
@@ -67,7 +67,7 @@
     linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
     background-size:56px 56px;mask-image:radial-gradient(ellipse 90% 80% at 50% 0%,#000 40%,transparent 100%)}
   .hero .wrap{position:relative}
-  .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:stretch}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:stretch}
   .hero-media{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--line-dark);box-shadow:0 30px 60px rgba(0,0,0,.5);min-height:400px}
   .hero-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
   .hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(10,11,13,.45),transparent 55%);pointer-events:none}
@@ -143,10 +143,10 @@
     .svc-grid{grid-template-columns:1fr 1fr}
     .about-grid,.contact-grid{grid-template-columns:1fr;gap:44px}
     .spec-row{grid-template-columns:1fr;gap:6px}
-    .hero-grid{grid-template-columns:1fr;gap:0}
+    .hero-grid{grid-template-columns:minmax(0,1fr);gap:0}
     .hero-copy{display:contents}
-    .hero-copy .hero-tag{order:1}
-    .hero-media{order:2;margin:0 0 34px;min-height:0;aspect-ratio:16/9}
+    .hero-copy .hero-tag{order:1;font-size:clamp(7px,2.3vw,.68rem);letter-spacing:.14em;max-width:100%;overflow:hidden}
+    .hero-media{order:2;margin:0 0 34px;min-height:0;height:min(56vw,340px)}
     .hero-copy h1{order:3}
     .hero-copy .hero-rule{order:4}
     .hero-copy .hero-lead{order:5}
@@ -161,7 +161,6 @@
     .nav-open .nav ul li{border-bottom:1px solid var(--line-dark)}
     .nav-open .nav ul li:last-child{border-bottom:0}
     .nav-open .nav ul a{display:block;padding:15px 0;font-size:1rem}
-    .hero-tag{font-size:min(.62rem, 2.5vw);letter-spacing:.16em}
     .svc-grid{grid-template-columns:1fr}
     .hero{padding:72px 0 60px}
     .hero-stats div{padding-right:24px;margin-right:24px}
