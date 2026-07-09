@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RBR Tecnologia da Informação — Infraestrutura, Virtualização e Backup</title>
-<meta name="description" content="RBR TI: mais de 12 anos em serviços de Tecnologia da Informação. Equipe certificada Microsoft, VMware VCP/VCAP, Veeam VMCE e HPE Master ASE.">
+<meta name="description" content="RBR TI: mais de 11 anos em serviços de Tecnologia da Informação. Equipe certificada Microsoft, VMware VCP/VCAP, Veeam VMCE e HPE Master ASE.">
 <link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
 <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
@@ -139,7 +139,14 @@
     .svc-grid{grid-template-columns:1fr 1fr}
     .about-grid,.contact-grid{grid-template-columns:1fr;gap:44px}
     .spec-row{grid-template-columns:1fr;gap:6px}
-    .hero-grid{grid-template-columns:1fr;gap:44px}
+    .hero-grid{grid-template-columns:1fr;gap:0}
+    .hero-copy{display:contents}
+    .hero-copy .hero-tag{order:1}
+    .hero-media{order:2;margin:0 0 34px}
+    .hero-copy h1{order:3}
+    .hero-copy .hero-rule{order:4}
+    .hero-copy .hero-lead{order:5}
+    .hero-copy .hero-actions{order:6}
   }
   @media (max-width:640px){
     .nav ul{display:none}
@@ -158,7 +165,7 @@
 <header>
   <div class="wrap nav">
     <a class="brand" href="#inicio" aria-label="RBR Tecnologia da Informação — início">
-      <img src="logo.png" alt="RBR Tecnologia da Informação">
+      <img src="logo.jpg" alt="RBR Tecnologia da Informação">
     </a>
     <nav aria-label="Principal">
       <ul>
@@ -176,11 +183,11 @@
   <section class="hero" id="inicio">
     <div class="wrap">
       <div class="hero-grid">
-        <div>
+        <div class="hero-copy">
           <p class="hero-tag">Tecnologia da Informação · desde 2012</p>
           <h1>Infraestrutura de TI com <em>precisão de engenharia</em></h1>
           <div class="hero-rule" aria-hidden="true"></div>
-          <p>A RBR TI presta serviços de Tecnologia da Informação com uma equipe técnica de alto nível, certificada pelos principais fabricantes do mercado. Servidores, virtualização, backup e sustentação — para clientes públicos e privados.</p>
+          <p class="hero-lead">A RBR presta serviços em TI com uma equipe técnica de alto nível, certificada pelos principais fabricantes do mercado.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#contato">Fale com um especialista</a>
             <a class="btn btn-ghost" href="#servicos">Conheça os serviços</a>
@@ -193,7 +200,7 @@
         </div>
       </div>
       <div class="hero-stats">
-        <div><strong>12+</strong><span>anos de atuação</span></div>
+        <div><strong>11+</strong><span>anos de atuação</span></div>
         <div><strong>4</strong><span>fabricantes certificados</span></div>
         <div><strong>Público e privado</strong><span>perfis de clientes atendidos</span></div>
       </div>
@@ -278,7 +285,7 @@
     <div class="wrap about-grid">
       <div>
         <span class="eyebrow">Sobre a RBR</span>
-        <h2>Mais de 12 anos resolvendo TI de verdade</h2>
+        <h2>Mais de 11 anos resolvendo TI de verdade</h2>
         <p>A RBR Tecnologia da Informação atende diversos tipos de clientes, públicos e privados, com uma equipe técnica de alto nível. Nosso foco é simples: ambientes estáveis, dados protegidos e problemas resolvidos com transparência.</p>
         <ul class="about-points">
           <li>Profissionais altamente capacitados e certificados</li>
@@ -288,7 +295,7 @@
         </ul>
       </div>
       <div class="about-logo">
-        <img src="logo.png" alt="Logotipo RBR Tecnologia da Informação">
+        <img src="logo.jpg" alt="Logotipo RBR Tecnologia da Informação">
       </div>
     </div>
   </section>
@@ -301,7 +308,8 @@
         <p>Conte para a gente o desafio da sua infraestrutura. Retornamos com uma proposta objetiva, sem enrolação.</p>
         <ul class="contact-list">
           <li><span class="k">E-mail</span><a href="mailto:contato@rbrti.com.br">contato@rbrti.com.br</a></li>
-          <li><span class="k">Horário</span><span><b>Segunda a sexta, 8h às 18h<b/></span></li>
+          <li><span class="k">Telefone</span><a href="tel:+5511999999999">(11) 99999-9999</a></li>
+          <li><span class="k">Horário</span><span>Segunda a sexta, 8h às 18h</span></li>
         </ul>
       </div>
       <form action="mailto:contato@rbrti.com.br" method="post" enctype="text/plain">
@@ -325,7 +333,7 @@
 
 <footer>
   <div class="wrap foot">
-    <img src="logo.png" alt="RBR Tecnologia da Informação">
+    <img src="logo.jpg" alt="RBR Tecnologia da Informação">
     <span>© 2026 RBR Tecnologia da Informação. Todos os direitos reservados.</span>
     <span class="foot-tag">Infraestrutura · Virtualização · Backup</span>
   </div>
