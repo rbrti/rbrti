@@ -71,6 +71,7 @@
   .hero .wrap{position:relative;z-index:2}
   .hero-grid{display:block}
   .hero-copy{display:block}
+  /* tagline: uma linha só no desktop */
   .hero-tag{font-family:var(--tech);font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;color:#a8b0bb;margin-bottom:26px;white-space:nowrap}
   .hero h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:700;letter-spacing:-.02em;max-width:17ch;text-shadow:0 2px 24px rgba(0,0,0,.5)}
   .hero h1 em{font-style:normal;color:#5b7dfa}
@@ -146,6 +147,8 @@
     /* no celular o texto fica sobre o vídeo inteiro: escurecimento uniforme */
     .hero-media::after{background:linear-gradient(180deg,rgba(10,11,13,.88) 0%,rgba(10,11,13,.9) 60%,rgba(10,11,13,.94) 100%)}
     .hero{padding:88px 0 68px}
+    /* tagline menor e já sem nowrap, para nunca estourar a tela */
+    .hero-tag{font-size:.62rem;letter-spacing:.2em;white-space:normal}
   }
   @media (max-width:640px){
     .nav ul{display:none}
@@ -156,7 +159,8 @@
     .nav-open .nav ul li{border-bottom:1px solid var(--line-dark)}
     .nav-open .nav ul li:last-child{border-bottom:0}
     .nav-open .nav ul a{display:block;padding:15px 0;font-size:1rem}
-    .hero-tag{font-size:clamp(7px,2.3vw,.68rem);letter-spacing:.14em;max-width:100%;overflow:hidden}
+    /* no celular a tagline quebra em duas linhas em vez de ser cortada */
+    .hero-tag{font-size:.58rem;letter-spacing:.16em;line-height:1.9;white-space:normal;max-width:100%}
     .svc-grid{grid-template-columns:1fr}
     .hero-stats div{padding-right:24px;margin-right:24px}
   }
