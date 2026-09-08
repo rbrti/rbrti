@@ -325,7 +325,9 @@
           <li><span class="k">Horário</span><strong>Segunda a sexta, 8h às 18h</strong></li>
         </ul>
       </div>
-      <form action="mailto:contato@rbrti.com.br" method="post" enctype="text/plain">
+      <form action="https://api.web3forms.com/submit" method="post">
+        <input type="hidden" name="access_key" value="485f282c-18a8-4a12-bd8a-2c504e2631ba">
+        <input type="hidden" name="redirect" value="https://rbrti.com.br/?enviado=1">
         <div>
           <label for="nome">Nome</label>
           <input id="nome" name="nome" type="text" autocomplete="name" required>
